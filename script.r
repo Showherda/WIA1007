@@ -11,6 +11,7 @@ course_links <- str_split(str_extract_all(page, "(?<=<loc>).*?(?=</loc>)")[[1]],
 for (link in course_links){
   html <- read_html(link)
   name <- html_element(html, css = ".banner-title-without--subtitle") %>% html_text()
-  
-  print(name)
+  level <- str_extract(html, "(?<=Approx. ).*?(?= hours to complete)")
+  ratings <- html_element(html, css = "div.rc-ReviewsOverview__totals__rating") %>% html_text()
+  free_enrol <- grepl("Enroll for Free", html)
 }
