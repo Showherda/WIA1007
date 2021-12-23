@@ -14,4 +14,5 @@ for (link in course_links){
   level <- str_extract(html, "(?<=Approx. ).*?(?= hours to complete)")
   ratings <- html_element(html, css = "div.rc-ReviewsOverview__totals__rating") %>% html_text()
   free_enrol <- grepl("Enroll for Free", html)
+  fin_aid <- grepl("Financial aid available", html)
 }
