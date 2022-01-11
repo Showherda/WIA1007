@@ -14,4 +14,8 @@ for (link in course_links){
   ratings <- html_element(html, css = "div.rc-ReviewsOverview__totals__rating") %>% html_text()
   free_enrol <- grepl("Enroll for Free", html)
   fin_aid <- grepl("Financial aid available", html)
+  x = paste(name, level, free_enrol, fin_aid, sep=",")
+  cat(x, file="data.csv")
+  print(link)
+  print(x)
 }
