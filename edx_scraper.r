@@ -18,7 +18,7 @@ for (link in course_links){
   ratings <- 0
   free_enrol <- if (is.na(html_element(html, css = ".track-headers-row+ .tr .td+ .td .comparison-item") %>% html_text())) F else T
   fin_aid <- T
-  x = paste(name, level, hrs_to_complt, ratings, free_enrol, fin_aid, link, sep=",")
+  x = paste(name, level, hrs_to_complt, ratings, free_enrol, fin_aid, link, sep=";")
   
   cat(x, file="data.csv", append=T)
   cat("\n", file="data.csv", append=T)
