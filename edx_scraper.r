@@ -6,6 +6,7 @@ sitemap <- "https://www.edx.org/sitemap-0.xml"
 page <- read_html(sitemap)
 
 course_links <- str_split(str_extract_all(page, "https://www.edx.org/course/(?!subject/).*?(?=</loc>)")[[1]], " ")
+
 i<-0
 for (link in course_links){
   html <- read_html(link)
@@ -17,7 +18,7 @@ for (link in course_links){
   ratings <- 0
   free_enrol <- if (is.na(html_element(html, css = ".track-headers-row+ .tr .td+ .td .comparison-item") %>% html_text())) F else T
   fin_aid <- T
-  x = paste(name, level, hrs_to_complt, ratings, free_enrol, fin_aid, sep=",")
+  x = paste(name, level, hrs_to_complt, ratings, free_enrol, fin_aid, link, sep=",")
   
   cat(x, file="data.csv", append=T)
   cat("\n", file="data.csv", append=T)
